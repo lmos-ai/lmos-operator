@@ -1,0 +1,23 @@
+#
+# SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+apiVersion: lmos.ai/v1
+kind: Channel
+metadata:
+  name: de-oneapp-canary
+  labels:
+    channel: oneapp
+    version: 1.1.0
+    tenant: de
+    subset: canary
+spec:
+  requiredCapabilities:
+    - name: view-bill
+      version: "1.1.0"
+    - name: download-bill
+      version: ">=1.1.0"
+    - name: view-contract
+      version: ">=1.1.0"
