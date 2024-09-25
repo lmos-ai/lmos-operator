@@ -107,7 +107,7 @@ dependencies {
 		exclude(group = "org.apache.logging.log4j", module = "log4j-slf4j2-impl")
 	}
 
-	annotationProcessor("io.fabric8:crd-generator-apt:6.13.3")
+	annotationProcessor("io.fabric8:crd-generator-apt:6.13.4")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
