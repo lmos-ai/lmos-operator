@@ -7,7 +7,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: {{ include "lmos-operator.fullname" . }}
-    namespace: {{ .Values.serviceAccount.namespace }}
+    namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: {{ include "lmos-operator.fullname" . }}

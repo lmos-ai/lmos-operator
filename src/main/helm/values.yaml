@@ -12,7 +12,6 @@ nameOverride: "lmos-operator"
 fullnameOverride: "lmos-operator"
 
 serviceAccount:
-  namespace: default
   # Specifies whether a service account should be created
   create: true
   # Automatically mount a ServiceAccount's API credentials?
