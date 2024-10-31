@@ -20,16 +20,19 @@ public class AgentResourcesFilter implements Predicate<AgentResource>   {
 
     private final Map<String, String> labels;
 
-
     public AgentResourcesFilter(ChannelResource channelResource) {
         var metadata = channelResource.getMetadata();
         labels = metadata.getLabels();
-
     }
 
     @Override
     public boolean test(AgentResource agentResource) {
-        return agentResource.getSpec().getSupportedTenants().contains(labels.get("tenant")) &&
-                agentResource.getSpec().getSupportedChannels().contains(labels.get("channel"));
+        boolean tenantMatches = agentResource.getSpec().getSupportedTenants() == null ||
+                                agentResource.getSpec().getSupportedTenants().isEmpty() ||
+                                agentResource.getSpec().getSupportedTenants().contains(labels.get("tenant"));
+
+        boolean channelMatches = agentResource.getSpec().getSupportedChannels().contains(labels.get("channel"));
+
+        return tenantMatches && channelMatches;
     }
 }

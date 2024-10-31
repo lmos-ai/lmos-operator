@@ -7,11 +7,11 @@
 apiVersion: lmos.ai/v1
 kind: Channel
 metadata:
-  name: de-oneapp-stable
+  name: ivr-stable
   labels:
-    channel: oneapp
+    channel: ivr
     version: 1.0.0
-    tenant: de
+    tenant: acme
     subset: stable
 spec:
   requiredCapabilities:

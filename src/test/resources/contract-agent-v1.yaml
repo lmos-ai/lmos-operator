@@ -7,15 +7,12 @@
 apiVersion: lmos.ai/v1
 kind: Agent
 metadata:
-  name: de-contract-agent
+  name: contract-agent
 spec:
   description: This is the contract agent description
-  supportedTenants:
-    - de
-    - at
   supportedChannels:
     - web
-    - oneapp
+    - ivr
   providedCapabilities:
     - name: view-contract
       version: 1.1.0

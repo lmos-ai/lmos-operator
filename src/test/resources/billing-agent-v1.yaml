@@ -7,18 +7,14 @@
 apiVersion: lmos.ai/v1
 kind: Agent
 metadata:
-  name: de-billing-agent-stable
+  name: billing-agent-stable
   labels:
     subset: "stable"
     version: "1.0.0"
 spec:
   description: This is the billing agent description
-  supportedTenants:
-    - de
-    - at
   supportedChannels:
     - web
-    - oneapp
     - ivr
   providedCapabilities:
     - name: view-bill
