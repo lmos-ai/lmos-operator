@@ -13,6 +13,8 @@ metadata:
     version: "1.0.0"
 spec:
   description: This is the billing agent description
+  supportedTenants:
+    - acme
   supportedChannels:
     - web
     - ivr

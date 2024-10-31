@@ -44,8 +44,8 @@ public class CustomResourcesControllerIntegrationTest {
     @Test
     void shouldReturnChannels() throws FileNotFoundException {
         // Given I create two Channel resources
-        client.load(getResource("web-channel-v1.yaml")).create();
-        client.load(getResource("ivr-channel-v1.yaml")).create();
+        client.load(getResource("acme-web-channel-v1.yaml")).create();
+        client.load(getResource("acme-ivr-channel-v1.yaml")).create();
 
         // When I call the API
         EntityExchangeResult<List<ChannelResource>> result = this.webTestClient
@@ -65,7 +65,7 @@ public class CustomResourcesControllerIntegrationTest {
     @Test
     void shouldReturnChannelResource() throws FileNotFoundException {
         // Given I create an ChannelResource
-        client.load(getResource("web-channel-v1.yaml")).createOrReplace();
+        client.load(getResource("acme-web-channel-v1.yaml")).createOrReplace();
 
         // When I call the API
         EntityExchangeResult<ChannelResource> result = this.webTestClient
@@ -80,7 +80,7 @@ public class CustomResourcesControllerIntegrationTest {
 
         // Then the created channel resource should be returned
         assertThat(responseBody).isNotNull();
-        assertThat(responseBody.getMetadata().getName()).isEqualTo("web-stable");
+        assertThat(responseBody.getMetadata().getName()).isEqualTo("acme-web-stable");
     }
 
     @Test
@@ -101,7 +101,7 @@ public class CustomResourcesControllerIntegrationTest {
 
         // Then the created channel routing resource should be returned
         assertThat(responseBody).isNotNull();
-        assertThat(responseBody.getMetadata().getName()).isEqualTo("web-stable");
+        assertThat(responseBody.getMetadata().getName()).isEqualTo("acme-web-stable");
     }
 
     @Test

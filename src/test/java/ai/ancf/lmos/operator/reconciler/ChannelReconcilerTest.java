@@ -70,11 +70,11 @@ class ChannelReconcilerTest {
     void shouldCreateResolvedChannelRouting() throws FileNotFoundException {
 
         // When I create two Agents
-        client.load(getResource("billing-agent-v1.yaml")).createOrReplace();
+        client.load(getResource("acme-billing-agent-v1.yaml")).createOrReplace();
         client.load(getResource("contract-agent-v1.yaml")).createOrReplace();
 
         // When I create a Channel the Reconciler should start
-        client.load(getResource("ivr-channel-v1.yaml")).createOrReplace();
+        client.load(getResource("acme-ivr-channel-v1.yaml")).createOrReplace();
 
         // Then the channel status should be updated to resolved
         var channelResources = await().atMost(5, TimeUnit.SECONDS) // Timeout duration
@@ -93,7 +93,7 @@ class ChannelReconcilerTest {
         assertThat(channelRoutingResources).hasSize(1);
         ChannelRoutingResource channelRoutingResource = channelRoutingResources.get(0);
         //assertThat(channelRoutingResource.getStatus().getResolveStatus()).isEqualTo(ResolveStatus.RESOLVED);
-        assertThat(channelRoutingResource.getMetadata().getName()).isEqualTo("ivr-stable");
+        assertThat(channelRoutingResource.getMetadata().getName()).isEqualTo("acme-ivr-stable");
         assertThat(channelRoutingResource.getMetadata().getOwnerReferences()).hasSize(1);
         System.out.println(Serialization.asYaml(channelRoutingResource));
 
@@ -110,8 +110,8 @@ class ChannelReconcilerTest {
     void shouldCreateUnresolvedChannelRouting() throws FileNotFoundException, InterruptedException {
 
         // When I create an Agent and a Channel
-        client.load(getResource("billing-agent-v1.yaml")).createOrReplace();
-        client.load(getResource("web-channel-v1.yaml")).createOrReplace();
+        client.load(getResource("acme-billing-agent-v1.yaml")).createOrReplace();
+        client.load(getResource("acme-web-channel-v1.yaml")).createOrReplace();
 
         // Then the channel status should be updated to unresolved
         var channelResources = await().atMost(5, TimeUnit.SECONDS) // Timeout duration
@@ -130,7 +130,35 @@ class ChannelReconcilerTest {
         assertThat(channelRoutingResources).isNotNull().hasSize(1);
         ChannelRoutingResource channelRoutingResource = channelRoutingResources.get(0);
         //assertThat(channelRoutingResource.getStatus().getResolveStatus()).isEqualTo(ResolveStatus.UNRESOLVED);
-        assertThat(channelRoutingResource.getMetadata().getName()).isEqualTo("web-stable");
+        assertThat(channelRoutingResource.getMetadata().getName()).isEqualTo("acme-web-stable");
+        assertThat(channelRoutingResource.getMetadata().getOwnerReferences()).hasSize(1);
+    }
+
+    @Test
+    void shouldCreateUnresolvedChannelRoutingForNotMatchingTenant() throws FileNotFoundException, InterruptedException {
+
+        // When I create an Agent and a Channel with different tenants
+        client.load(getResource("acme-billing-agent-v1.yaml")).createOrReplace();
+        client.load(getResource("globex-web-channel-v1.yaml")).createOrReplace();
+
+        // Then the channel status should be updated to unresolved
+        var channelResources = await().atMost(5, TimeUnit.SECONDS) // Timeout duration
+                .pollInterval(50, TimeUnit.MILLISECONDS) // Polling interval
+                .until(() -> client.resources(ChannelResource.class).list().getItems(), c -> c.get(0).getStatus() != null);
+
+        assertThat(channelResources).isNotNull().hasSize(1);
+        assertThat(channelResources.get(0).getStatus().getResolveStatus()).isEqualTo(ResolveStatus.UNRESOLVED);
+        assertThat(channelResources.get(0).getStatus().getUnresolvedRequiredCapabilities()).isNotEmpty();
+
+        // And the channel routing resource should be created but status is unresolved
+        var channelRoutingResources = await().atMost(5, TimeUnit.SECONDS) // Timeout duration
+                .pollInterval(50, TimeUnit.MILLISECONDS) // Polling interval
+                .until(() -> client.resources(ChannelRoutingResource.class).list().getItems(), r -> !r.isEmpty());
+
+        assertThat(channelRoutingResources).isNotNull().hasSize(1);
+        ChannelRoutingResource channelRoutingResource = channelRoutingResources.get(0);
+        //assertThat(channelRoutingResource.getStatus().getResolveStatus()).isEqualTo(ResolveStatus.UNRESOLVED);
+        assertThat(channelRoutingResource.getMetadata().getName()).isEqualTo("globex-web-stable");
         assertThat(channelRoutingResource.getMetadata().getOwnerReferences()).hasSize(1);
     }
 
