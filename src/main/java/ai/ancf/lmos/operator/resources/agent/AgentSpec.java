@@ -14,6 +14,7 @@ public class AgentSpec {
     private Set<String> supportedTenants;
     private Set<String> supportedChannels;
     private Set<ProvidedCapability> providedCapabilities;
+    private String thingDescription;
 
     public AgentSpec() {
     }
@@ -56,6 +57,14 @@ public class AgentSpec {
 
     public void setProvidedCapabilities(Set<ProvidedCapability> providedCapabilities) {
         this.providedCapabilities = providedCapabilities;
+    }
+
+    public String getThingDescription() {
+        return thingDescription;
+    }
+
+    public void setThingDescription(String thingDescription) {
+        this.thingDescription = thingDescription;
     }
 
     @Override
