@@ -167,14 +167,14 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    implementation("io.javaoperatorsdk:operator-framework-spring-boot-starter:5.5.0")
+    implementation("io.javaoperatorsdk:operator-framework-spring-boot-starter:5.6.0")
     implementation("io.fabric8:generator-annotations:6.13.4")
 
     implementation("org.apache.felix:org.apache.felix.resolver:2.0.4")
 
     implementation("org.semver4j:semver4j:5.4.1")
 
-    testImplementation("io.javaoperatorsdk:operator-framework-spring-boot-starter-test:5.5.0") {
+    testImplementation("io.javaoperatorsdk:operator-framework-spring-boot-starter-test:5.6.0") {
         exclude(group = "org.apache.logging.log4j", module = "log4j-slf4j2-impl")
     }
 
