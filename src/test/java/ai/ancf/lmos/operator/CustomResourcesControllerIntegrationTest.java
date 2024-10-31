@@ -101,7 +101,7 @@ public class CustomResourcesControllerIntegrationTest {
 
         // Then the created channel routing resource should be returned
         assertThat(responseBody).isNotNull();
-        assertThat(responseBody.getMetadata().getName()).isEqualTo("acme-web-stable");
+        assertThat(responseBody.getMetadata().getName()).isEqualTo("web-stable");
     }
 
     @Test
