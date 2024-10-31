@@ -174,7 +174,7 @@ dependencies {
 
     implementation("org.semver4j:semver4j:5.4.1")
 
-    testImplementation("io.javaoperatorsdk:operator-framework-spring-boot-starter-test:5.5.0") {
+    testImplementation("io.javaoperatorsdk:operator-framework-spring-boot-starter-test:5.6.0") {
         exclude(group = "org.apache.logging.log4j", module = "log4j-slf4j2-impl")
     }
 
