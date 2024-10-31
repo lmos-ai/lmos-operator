@@ -168,7 +168,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     implementation("io.javaoperatorsdk:operator-framework-spring-boot-starter:5.5.0")
-    implementation("io.fabric8:generator-annotations:6.13.3")
+    implementation("io.fabric8:generator-annotations:6.13.4")
 
     implementation("org.apache.felix:org.apache.felix.resolver:2.0.4")
 
