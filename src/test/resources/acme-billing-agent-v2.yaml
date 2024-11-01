@@ -7,18 +7,16 @@
 apiVersion: lmos.ai/v1
 kind: Agent
 metadata:
-  name: de-billing-agent-canary
+  name: billing-agent-canary
   labels:
     subset: "canary"
     version: "1.1.0"
 spec:
   description: This is the billing agent description
   supportedTenants:
-    - de
-    - at
+    - acme
   supportedChannels:
     - web
-    - oneapp
     - ivr
   providedCapabilities:
     - name: view-bill

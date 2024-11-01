@@ -7,18 +7,13 @@
 apiVersion: lmos.ai/v1
 kind: Channel
 metadata:
-  name: de-oneapp-stable
+  name: globex-web-stable
   labels:
-    channel: oneapp
+    channel: web
     version: 1.0.0
-    tenant: de
+    tenant: globex
     subset: stable
 spec:
   requiredCapabilities:
     - name: view-bill
       version: "1.0.0"
-    - name: download-bill
-      version: ">=1.0.0"
-      strategy: HIGHEST
-    - name: view-contract
-      version: ">=1.0.0"

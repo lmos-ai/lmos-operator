@@ -7,17 +7,18 @@
 apiVersion: lmos.ai/v1
 kind: Channel
 metadata:
-  name: de-oneapp-canary
+  name: acme-ivr-stable
   labels:
-    channel: oneapp
-    version: 1.1.0
-    tenant: de
-    subset: canary
+    channel: ivr
+    version: 1.0.0
+    tenant: acme
+    subset: stable
 spec:
   requiredCapabilities:
     - name: view-bill
-      version: "1.1.0"
+      version: "1.0.0"
     - name: download-bill
-      version: ">=1.1.0"
+      version: ">=1.0.0"
+      strategy: HIGHEST
     - name: view-contract
-      version: ">=1.1.0"
+      version: ">=1.0.0"

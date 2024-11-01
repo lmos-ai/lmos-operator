@@ -43,14 +43,14 @@ public class CustomResourcesControllerIntegrationTest {
 
     @Test
     void shouldReturnChannels() throws FileNotFoundException {
-        //Given I create two Channel resources
-        client.load(getResource("oneapp-channel-v1.yaml")).create();
-        client.load(getResource("web-channel-v1.yaml")).create();
+        // Given I create two Channel resources
+        client.load(getResource("acme-web-channel-v1.yaml")).create();
+        client.load(getResource("acme-ivr-channel-v1.yaml")).create();
 
-        //When I call the API
+        // When I call the API
         EntityExchangeResult<List<ChannelResource>> result = this.webTestClient
                 .get()
-                .uri("/apis/v1/tenants/de/channels")
+                .uri("/apis/v1/tenants/acme/channels")
                 .header(X_SUBSET_HEADER, "stable")
                 .exchange()
                 .expectStatus().isOk()
@@ -64,13 +64,13 @@ public class CustomResourcesControllerIntegrationTest {
 
     @Test
     void shouldReturnChannelResource() throws FileNotFoundException {
-        //Given I create an ChannelResource
-        client.load(getResource("oneapp-channel-v1.yaml")).createOrReplace();
+        // Given I create an ChannelResource
+        client.load(getResource("acme-web-channel-v1.yaml")).createOrReplace();
 
-        //When I call the API
+        // When I call the API
         EntityExchangeResult<ChannelResource> result = this.webTestClient
                 .get()
-                .uri("/apis/v1/tenants/de/channels/oneapp")
+                .uri("/apis/v1/tenants/acme/channels/web")
                 .header(X_SUBSET_HEADER, "stable")
                 .exchange()
                 .expectStatus().isOk()
@@ -80,19 +80,18 @@ public class CustomResourcesControllerIntegrationTest {
 
         // Then the created channel resource should be returned
         assertThat(responseBody).isNotNull();
-        assertThat(responseBody.getMetadata().getName()).isEqualTo("de-oneapp-stable");
-        //System.out.println(Serialization.asYaml(responseBody));
+        assertThat(responseBody.getMetadata().getName()).isEqualTo("acme-web-stable");
     }
 
     @Test
     void shouldReturnChannelRoutingResource() throws FileNotFoundException {
-        //Given I create an ChannelRouting
+        // Given I create an ChannelRouting
         client.load(getResource("channel-routing.yaml")).createOrReplace();
 
-        //When I call the API
+        // When I call the API
         EntityExchangeResult<ChannelRoutingResource> result = this.webTestClient
                 .get()
-                .uri("/apis/v1/tenants/de/channels/oneapp/routing")
+                .uri("/apis/v1/tenants/acme/channels/web/routing")
                 .header(X_SUBSET_HEADER, "stable")
                 .exchange()
                 .expectStatus().isOk()
@@ -102,16 +101,14 @@ public class CustomResourcesControllerIntegrationTest {
 
         // Then the created channel routing resource should be returned
         assertThat(responseBody).isNotNull();
-        assertThat(responseBody.getMetadata().getName()).isEqualTo("de-oneapp-stable");
-        //System.out.println(Serialization.asYaml(responseBody));
+        assertThat(responseBody.getMetadata().getName()).isEqualTo("acme-web-stable");
     }
 
     @Test
     void shouldReturnNotContent() {
-        //Given there is no channel routing
+        // Given there is no channel routing
 
-        //When I call the API the response should be 404 no content
-
+        // When I call the API the response should be 404 no content
          this.webTestClient
                 .get()
                 .uri("/apis/v1/tenants/de/channels/unknown/routing")
