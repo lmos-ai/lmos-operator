@@ -1,6 +1,7 @@
 # lmos-operator
 
 ![Build Status](https://github.com/lmos-ai/lmos-operator/actions/workflows/gradle-publish.yml/badge.svg)
+[![Gradle Package](https://github.com/lmos-ai/lmos-operator/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/lmos-ai/lmos-operator/actions/workflows/gradle-publish.yml)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
@@ -49,15 +50,13 @@ The following diagram illustrates how the lmos-operator dynamically manages and 
 apiVersion: lmos.ai/v1
 kind: Agent
 metadata:
-name: de-billing-agent
+name: acme-billing-agent
 spec:
 description: This is the billing agent description
 supportedTenants:
-- de
-- at
+- acme
 supportedChannels:
 - web
-- oneapp
 - ivr
 providedCapabilities:
 - name: view-bill
@@ -74,11 +73,11 @@ description: Capability to download a bill
 apiVersion: lmos.ai/v1
 kind: Channel
 metadata:
-  name: de-oneapp-stable
+  name: acme-web-stable
   labels:
-    channel: oneapp
+    channel: web
     version: 1.0.0
-    tenant: de
+    tenant: acme
     subset: stable
 spec:
   requiredCapabilities:
@@ -97,36 +96,36 @@ spec:
 apiVersion: "lmos.ai/v1"
 kind: "ChannelRouting"
 metadata:
-  name: "de-oneapp-stable"
+  name: "acme-web-stable"
   namespace: "test"
   labels:
     version: "1.0.0"
-    tenant: "de"
-    channel: "oneapp"
+    tenant: "acme"
+    channel: "web"
     subset: "stable"
 spec:
   capabilityGroups:
-  - name: "de-contract-agent"
+  - name: "contract-agent"
     description: "This is the contract agent description"
     capabilities:
     - name: "view-contract"
       requiredVersion: ">=1.0.0"
       providedVersion: "1.1.0"
       description: "Capability to view a contract"
-      host: "de-contract-agent-stable-svc"
-  - name: "de-billing-agent"
+      host: "contract-agent-stable-svc"
+  - name: "acme-billing-agent"
     description: "This is the billing agent description"
     capabilities:
     - name: "view-bill"
       requiredVersion: "1.0.0"
       providedVersion: "1.0.0"
       description: "Capability to view a bill"
-      host: "de-billing-agent-stable-svc"
+      host: "acme-billing-agent-stable-svc"
     - name: "download-bill"
       requiredVersion: ">=1.0.0"
       providedVersion: "1.1.0"
       description: "Capability to download a bill"
-      host: "de-billing-agent-stable-svc"
+      host: "acme-billing-agent-stable-svc"
 ```
 
 ### Supported version range syntaxes
@@ -140,7 +139,7 @@ NPM-style
 Ivy-style
 * Version Range Matcher [1.0,2.0], [1.0,2.0[, ]1.0,2.0], ]1.0,2.0[, [1.0,), ]1.0,), (,2.0] and (,2.0[* 
 
-## How to install on a Kubernetes cluster:
+## How to install the operator on a Kubernetes cluster:
 
 ```
 export CR_PAT=YOUR_TOKEN
@@ -183,9 +182,9 @@ cd lmos-operator
 Apply Agent and Channel test resources:
 
 ```
-kubectl apply -f src/test/resources/billing-agent-v1.yaml
+kubectl apply -f src/test/resources/acme-billing-agent-v1.yaml
 kubectl apply -f src/test/resources/contract-agent-v1.yaml
-kubectl apply -f src/test/resources/oneapp-channel-v1.yaml
+kubectl apply -f src/test/resources/acme-web-channel-v1.yaml
 ```
 
 Check that the Agents and Channel have been created:
@@ -197,12 +196,12 @@ kubectl get channels
 
 Expected output:
 ```
-NAME                      AGE
-de-billing-agent-stable   4m40s
-de-contract-agent         4m3s
+NAME                        AGE
+acme-billing-agent-stable   4m40s
+contract-agent              4m3s
 
 NAME               RESOLVE_STATUS
-de-oneapp-stable   RESOLVED
+acme-web-stable    RESOLVED
 ```
 
 Check that the lmos-operator has created a ChannelRouting:
@@ -212,7 +211,7 @@ kubectl get channelroutings
 
 Render the ChannelRouting as yaml
 ```
-kubectl get channel de-oneapp-stable -o yaml
+kubectl get channel acme-web-stable -o yaml
 ```
 
 ## Code of Conduct
