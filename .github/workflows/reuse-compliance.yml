@@ -4,7 +4,7 @@
 
 name: REUSE Compliance Check
 
-on: [push]
+on: [ push ]
 
 jobs:
   test:

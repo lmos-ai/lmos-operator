@@ -10,6 +10,6 @@
         "pivotal.vscode-boot-dev-pack"
       ]
     }
-},
+  },
   "postCreateCommand": "./gradlew build && ./gradlew bootRun"
 }
