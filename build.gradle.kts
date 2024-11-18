@@ -19,6 +19,8 @@ plugins {
     id("com.citi.helm-publish") version "2.2.0"
     id("net.researchgate.release") version "3.0.2"
     id("com.vanniktech.maven.publish") version "0.29.0"
+    kotlin("jvm")
+    kotlin("kapt") version "2.0.21"
 }
 
 group = "ai.ancf.lmos"
@@ -83,7 +85,7 @@ tasks.register("helmPush") {
     }
 }
 
-fun getProperty(propertyName: String) = System.getenv(propertyName) ?: project.findProperty(propertyName) as String
+fun getProperty(propertyName: String) = getenv(propertyName) ?: project.findProperty(propertyName) as String
 
 tasks.named<BootBuildImage>("bootBuildImage") {
     val registryUrl = getProperty("REGISTRY_URL")
@@ -172,21 +174,35 @@ dependencies {
 
     implementation("org.apache.felix:org.apache.felix.resolver:2.0.4")
 
+    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin")
+
     implementation("org.semver4j:semver4j:5.4.1")
 
     testImplementation("io.javaoperatorsdk:operator-framework-spring-boot-starter-test:5.6.0") {
         exclude(group = "org.apache.logging.log4j", module = "log4j-slf4j2-impl")
     }
 
-    annotationProcessor("io.fabric8:crd-generator-apt:6.13.4")
+    implementation("io.fabric8", "generator-annotations", "6.13.4")
+    kapt("io.fabric8", "crd-generator-apt", "6.13.4")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     testImplementation("org.awaitility:awaitility:4.2.2")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile> {
+    options.annotationProcessorPath = configurations["kapt"]
+}
+
+kapt {
+    arguments {
+        arg("crd.output.dir", file("src/main/resources/META-INF/fabric8"))
+    }
 }

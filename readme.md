@@ -54,17 +54,17 @@ name: acme-billing-agent
 spec:
 description: This is the billing agent description
 supportedTenants:
-- acme
+  - acme
 supportedChannels:
-- web
-- ivr
+  - web
+  - ivr
 providedCapabilities:
-- name: view-bill
-version: 1.0.0
-description: Capability to view a bill
-- name: download-bill
-version: 1.1.0
-description: Capability to download a bill
+  - name: view-bill
+    version: 1.0.0
+    description: Capability to view a bill
+  - name: download-bill
+    version: 1.1.0
+    description: Capability to download a bill
 ```
 
 #### Channel Resource
