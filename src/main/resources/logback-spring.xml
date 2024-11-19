@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+
+ SPDX-License-Identifier: Apache-2.0
+-->
 <configuration debug="false">
     <springProperty scope="context" name="environment" source="spring.profiles.active" defaultValue="UNKNOWN"/>
     <springProperty scope="context" name="application_id" source="spring.application.name" defaultValue="ia-platform-service"/>
