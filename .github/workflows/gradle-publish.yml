@@ -16,6 +16,12 @@ on:
     tags: [ 'releasemain' ]
 
 jobs:
+  reuse-compliance-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: REUSE Compliance Check
+        uses: fsfe/reuse-action@v5
   build:
     name: "Publish"
     runs-on: ubuntu-latest
