@@ -7,6 +7,8 @@
 spring:
   application:
     name: lmos-api-server
+  main:
+    banner-mode: off
 
 javaoperatorsdk:
   cache-sync-timeout: 17d
