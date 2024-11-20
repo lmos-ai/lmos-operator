@@ -21,3 +21,19 @@ javaoperatorsdk:
   min-concurrent-workflow-executor-threads: 12
   crd:
     apply-on-startup: true
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework: WARN
+      apache: WARN
+    io:
+      javaoperatorsdk:
+        operator:
+          Operator: WARN
+    ai:
+      ancf:
+        lmos:
+          operator:
+            OperatorApplicationKt: WARN
