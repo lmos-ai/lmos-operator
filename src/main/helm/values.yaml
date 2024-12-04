@@ -26,15 +26,21 @@ podAnnotations: { }
 podLabels: { }
 
 podSecurityContext: { }
-# fsGroup: 2000
+#  fsGroup: 1000
+#  runAsGroup: 1000
+#  runAsNonRoot: true
+#  runAsUser: 1002
+#  seccompProfile:
+#    type: RuntimeDefault
+#  supplementalGroups:
+#    - 1000
 
 securityContext: { }
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-# runAsUser: 1000
+#  allowPrivilegeEscalation: false
+#  readOnlyRootFilesystem: true
+#  capabilities:
+#    drop:
+#    - ALL
 
 service:
   type: ClusterIP
@@ -66,25 +72,34 @@ resources: { }
   #   memory: 128Mi
   # requests:
   #   cpu: 100m
-#   memory: 128Mi
+  #   memory: 128Mi
 
 livenessProbe:
-  httpGet:
-    path: /actuator/health
-    port: http
-  initialDelaySeconds: 20
+  initialDelaySeconds: 1
+  periodSeconds: 15
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 6
+
 readinessProbe:
-  httpGet:
-    path: /actuator/health
-    port: http
-  initialDelaySeconds: 20
+  initialDelaySeconds: 1
+  periodSeconds: 15
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+
+startupProbe:
+  initialDelaySeconds: 1
+  periodSeconds: 1
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 180
 
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 logging:
   # Set the logging format. Either: `text` or `json`
