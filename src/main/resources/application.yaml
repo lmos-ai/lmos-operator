@@ -37,3 +37,22 @@ logging:
         lmos:
           operator:
             OperatorApplicationKt: WARN
+
+management:
+  server:
+    port: 9090
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: prometheus,metrics,info,health
+  endpoint:
+    metrics:
+      access: read_only
+    health:
+      probes:
+        enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
