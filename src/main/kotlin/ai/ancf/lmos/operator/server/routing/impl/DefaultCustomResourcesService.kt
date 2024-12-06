@@ -30,7 +30,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
         val channelRoutingResources =
             client.resources(
                 ChannelRoutingResource::class.java,
-            ).withLabels(labelSelectors).list()
+            ).inAnyNamespace().withLabels(labelSelectors).list()
 
         if (channelRoutingResources.items.isEmpty()) {
             return null
@@ -55,7 +55,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
         val channelResources =
             client.resources(
                 ChannelResource::class.java,
-            ).withLabels(labelSelectors).list()
+            ).inAnyNamespace().withLabels(labelSelectors).list()
         channelResources.items.forEach(
             Consumer { channelResource: ChannelResource ->
                 channelResource.metadata.managedFields = null
@@ -79,7 +79,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
         val channelResources =
             client.resources(
                 ChannelResource::class.java,
-            ).withLabels(labelSelectors).list()
+            ).inAnyNamespace().withLabels(labelSelectors).list()
 
         if (channelResources.items.isEmpty()) {
             return null
