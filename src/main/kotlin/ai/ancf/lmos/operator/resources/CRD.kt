@@ -27,7 +27,7 @@ import io.fabric8.kubernetes.model.annotation.Version
 @Singular("agent")
 @Kind("Agent")
 @ShortNames("ag")
-class AgentResource : CustomResource<AgentSpec?, Void?>(), Namespaced
+class AgentResource : CustomResource<AgentSpec, Void>(), Namespaced
 
 data class AgentSpec(
     var supportedTenants: Set<String> = emptySet(),
@@ -153,12 +153,13 @@ data class ChannelRoutingCapability(
     var subset: String? = null,
     var description: String? = null,
 ) {
-    constructor(wire: Wire<AgentResource>) : this(
+    constructor(wire: Wire<AgentResource>, subset: String?) : this(
         name = wire.providedCapability.name,
         requiredVersion = wire.requiredCapability.version,
         providedVersion = wire.providedCapability.version,
         description = wire.providedCapability.description,
         host = "${wire.provider.metadata.name}.${wire.provider.metadata.namespace}.svc.cluster.local",
+        subset = subset,
     )
 }
 

@@ -17,9 +17,9 @@ class ChannelRolloutReconciler : Reconciler<ChannelRolloutResource> {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
     override fun reconcile(
-        channelRolloutResource: ChannelRolloutResource?,
-        context: Context<ChannelRolloutResource?>?,
-    ): UpdateControl<ChannelRolloutResource?> {
+        channelRolloutResource: ChannelRolloutResource,
+        context: Context<ChannelRolloutResource>,
+    ): UpdateControl<ChannelRolloutResource> {
         // TODO: fill in logic
         log.debug("ChannelRollout reconcile")
         return UpdateControl.noUpdate()
