@@ -6,7 +6,7 @@ metadata:
     {{- include "lmos-operator.labels" . | nindent 4 }}
 spec:
   hosts:
-    - {{ include "lmos-operator.fullname" . }}
+    - {{ include "lmos-operator.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
   http:
     - route:
         - weight: 100

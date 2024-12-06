@@ -27,7 +27,7 @@ import io.fabric8.kubernetes.model.annotation.Version
 @Singular("agent")
 @Kind("Agent")
 @ShortNames("ag")
-class AgentResource : CustomResource<AgentSpec?, Void?>(), Namespaced
+class AgentResource : CustomResource<AgentSpec, Void>(), Namespaced
 
 data class AgentSpec(
     var supportedTenants: Set<String> = emptySet(),

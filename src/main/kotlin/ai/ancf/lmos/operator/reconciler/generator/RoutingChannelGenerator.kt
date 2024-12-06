@@ -24,9 +24,9 @@ object RoutingChannelGenerator {
     fun createChannelRoutingResource(
         channelResource: ChannelResource,
         wiredCapabilities: Set<Wire<AgentResource>>,
+        subset: String,
     ): ChannelRoutingResource {
         val channelRoutingResource = createChannelRoutingResource(channelResource)
-        val subset = channelRoutingResource.metadata.labels[Labels.SUBSET]
         val groupedWires = groupWiresByProvider(wiredCapabilities)
         val channelRoutingSpec = channelRoutingResource.spec
         val capabilityGroups = mutableSetOf<CapabilityGroup>()

@@ -21,9 +21,9 @@ class AgentReconciler : Reconciler<AgentResource> {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
     override fun reconcile(
-        agentResource: AgentResource?,
-        context: Context<AgentResource?>?,
-    ): UpdateControl<AgentResource?> {
+        agentResource: AgentResource,
+        context: Context<AgentResource>,
+    ): UpdateControl<AgentResource> {
         // TODO: fill in logic
         log.debug("Agent reconcile")
 
