@@ -131,3 +131,7 @@ customResources:
   - channels/status
   - channelroutings
   - channelroutings/status
+
+# The namespaces from where clients are calling the lmos operator
+clientNamespaces:
+  - default

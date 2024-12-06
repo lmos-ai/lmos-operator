@@ -19,6 +19,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
         tenant: String,
         channel: String,
         subset: String,
+        namespace: String,
     ): ChannelRoutingResource? {
         val labelSelectors =
             mapOf(
@@ -30,7 +31,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
         val channelRoutingResources =
             client.resources(
                 ChannelRoutingResource::class.java,
-            ).withLabels(labelSelectors).list()
+            ).inNamespace(namespace).withLabels(labelSelectors).list()
 
         if (channelRoutingResources.items.isEmpty()) {
             return null
@@ -45,6 +46,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
     override fun getChannels(
         tenant: String,
         subset: String,
+        namespace: String,
     ): List<ChannelResource> {
         val labelSelectors =
             mapOf(
@@ -55,7 +57,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
         val channelResources =
             client.resources(
                 ChannelResource::class.java,
-            ).withLabels(labelSelectors).list()
+            ).inNamespace(namespace).withLabels(labelSelectors).list()
         channelResources.items.forEach(
             Consumer { channelResource: ChannelResource ->
                 channelResource.metadata.managedFields = null
@@ -68,6 +70,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
         tenant: String,
         channel: String,
         subset: String,
+        namespace: String,
     ): ChannelResource? {
         val labelSelectors =
             mapOf(
@@ -79,7 +82,7 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
         val channelResources =
             client.resources(
                 ChannelResource::class.java,
-            ).withLabels(labelSelectors).list()
+            ).inNamespace(namespace).withLabels(labelSelectors).list()
 
         if (channelResources.items.isEmpty()) {
             return null

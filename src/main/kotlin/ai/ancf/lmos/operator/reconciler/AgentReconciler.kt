@@ -21,11 +21,10 @@ class AgentReconciler : Reconciler<AgentResource> {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
     override fun reconcile(
-        agentResource: AgentResource?,
-        context: Context<AgentResource?>?,
-    ): UpdateControl<AgentResource?> {
-        // TODO: fill in logic
-        log.debug("Agent reconcile")
+        agentResource: AgentResource,
+        context: Context<AgentResource>,
+    ): UpdateControl<AgentResource> {
+        log.debug("Agent reconcile: ${agentResource.metadata.namespace}/${agentResource.metadata.name}")
 
         return UpdateControl.noUpdate()
     }

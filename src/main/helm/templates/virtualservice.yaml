@@ -6,24 +6,30 @@ metadata:
     {{- include "lmos-operator.labels" . | nindent 4 }}
 spec:
   hosts:
-    - {{ include "lmos-operator.fullname" . }}
+    - {{ include "lmos-operator.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
   http:
-    - route:
+    {{- range $namespace := .Values.clientNamespaces }}
+    - match:
+        - sourceNamespace: {{ $namespace | quote}}
+      route:
         - weight: 100
           destination:
-            host: {{ include "lmos-operator.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+            host: {{ include "lmos-operator.fullname" $ }}.{{ $.Release.Namespace }}.svc.cluster.local
             port:
               number: 8080
           headers:
             request:
               set:
+                x-namespace: {{ $namespace | quote }}
                 x-subset: "stable"
         - weight: 0
           destination:
-            host: {{ include "lmos-operator.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+            host: {{ include "lmos-operator.fullname" $ }}.{{ $.Release.Namespace }}.svc.cluster.local
             port:
               number: 8080
           headers:
             request:
               set:
+                x-namespace: {{ $namespace | quote }}
                 x-subset: "canary"
+    {{- end }}
