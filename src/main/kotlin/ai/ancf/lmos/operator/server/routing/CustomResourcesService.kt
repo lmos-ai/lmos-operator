@@ -14,16 +14,19 @@ interface CustomResourcesService {
         tenant: String,
         channel: String,
         subset: String,
+        namespace: String,
     ): ChannelRoutingResource?
 
     fun getChannels(
         tenant: String,
         subset: String,
+        namespace: String,
     ): List<ChannelResource>
 
     fun getChannel(
         tenant: String,
         channel: String,
         subset: String,
+        namespace: String,
     ): ChannelResource?
 }

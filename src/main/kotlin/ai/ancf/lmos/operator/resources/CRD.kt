@@ -27,13 +27,13 @@ import io.fabric8.kubernetes.model.annotation.Version
 @Singular("agent")
 @Kind("Agent")
 @ShortNames("ag")
-class AgentResource : CustomResource<AgentSpec?, Void?>(), Namespaced
+class AgentResource : CustomResource<AgentSpec, Void>(), Namespaced
 
 data class AgentSpec(
     var supportedTenants: Set<String> = emptySet(),
     var supportedChannels: Set<String> = emptySet(),
     var providedCapabilities: Set<ProvidedCapability> = emptySet(),
-    var description: String? = null,
+    var description: String = "",
 )
 
 sealed class Capability {
@@ -47,7 +47,7 @@ data class ProvidedCapability(
     override var name: String,
     @Required
     override var version: String,
-    var description: String? = null,
+    var description: String = "",
 ) : Capability()
 
 @Group("lmos.ai")
@@ -138,7 +138,7 @@ data class CapabilityGroup(
     var name: String,
     @Required
     var capabilities: Set<ChannelRoutingCapability>,
-    var description: String? = null,
+    var description: String = "",
 )
 
 data class ChannelRoutingCapability(
@@ -151,14 +151,15 @@ data class ChannelRoutingCapability(
     @Required
     var host: String,
     var subset: String? = null,
-    var description: String? = null,
+    var description: String = "",
 ) {
-    constructor(wire: Wire<AgentResource>) : this(
+    constructor(wire: Wire<AgentResource>, subset: String?) : this(
         name = wire.providedCapability.name,
         requiredVersion = wire.requiredCapability.version,
         providedVersion = wire.providedCapability.version,
         description = wire.providedCapability.description,
         host = "${wire.provider.metadata.name}.${wire.provider.metadata.namespace}.svc.cluster.local",
+        subset = subset,
     )
 }
 

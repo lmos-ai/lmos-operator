@@ -12,15 +12,20 @@ import io.javaoperatorsdk.operator.api.reconciler.ControllerConfiguration
 import io.javaoperatorsdk.operator.api.reconciler.Reconciler
 import io.javaoperatorsdk.operator.api.reconciler.UpdateControl
 import io.javaoperatorsdk.operator.api.reconciler.dependent.Dependent
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
 @Component
-@ControllerConfiguration(dependents = [Dependent(type = ChannelRoutingDependentResource::class)]) // @ControllerConfiguration()
+@ControllerConfiguration(dependents = [Dependent(type = ChannelDependentResource::class)])
 class ChannelReconciler : Reconciler<ChannelResource> {
+    private val log: Logger = LoggerFactory.getLogger(javaClass)
+
     override fun reconcile(
-        channelResource: ChannelResource?,
-        context: Context<ChannelResource?>?,
-    ): UpdateControl<ChannelResource?> {
+        channelResource: ChannelResource,
+        context: Context<ChannelResource>,
+    ): UpdateControl<ChannelResource> {
+        log.debug("Channel reconcile: ${channelResource.metadata.namespace}/${channelResource.metadata.name}")
         /*
                    The dependent ChannelRoutingDependentResource is automatically reconciled before the ChannelReconciler is executed.
                    Optional<ChannelRoutingResource> secondaryResource = context.getSecondaryResource(ChannelRoutingResource.class);
