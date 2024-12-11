@@ -42,6 +42,8 @@ jobs:
           distribution: 'temurin'
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@cc4fc85e6b35bafd578d5ffbc76a5518407e1af0
+      - name: Clean project
+        run: ./gradlew clean
       - name: Build and push image to GitHub Packages
         run: ./gradlew bootBuildImage
         env:
