@@ -45,7 +45,7 @@ jobs:
       - name: Clean project
         run: ./gradlew clean
       - name: Build and push image to GitHub Packages
-        run: ./gradlew bootBuildImage
+        run: ./gradlew check bootBuildImage
         env:
           REGISTRY_URL: ghcr.io
           REGISTRY_USERNAME: ${{ github.actor }}
