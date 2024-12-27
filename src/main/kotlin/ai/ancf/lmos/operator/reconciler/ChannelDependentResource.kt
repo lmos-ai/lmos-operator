@@ -40,9 +40,10 @@ class ChannelDependentResource :
         val client = context.client
 
         // Retrieve all agents from the same namespace of the channel resource
-        val subset = channelResource.metadata.labels[Labels.SUBSET]?: "stable"
-        val agentResources = client.resources(AgentResource::class.java).inNamespace(namespace)
-            .withLabel(Labels.SUBSET, subset).list().items
+        val subset = channelResource.metadata.labels[Labels.SUBSET] ?: "stable"
+        val agentResources =
+            client.resources(AgentResource::class.java).inNamespace(namespace)
+                .withLabel(Labels.SUBSET, subset).list().items
 
         // Filter agents which support the tenant and channel of the channel resource
         val filteredAgentResources =
