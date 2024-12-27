@@ -4,11 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.resolver.impl
+package org.eclipse.lmos.operator.resolver.impl
 
-import ai.ancf.lmos.operator.resolver.ResolveStrategy
-import ai.ancf.lmos.operator.resolver.Wire
-import ai.ancf.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resolver.ResolveStrategy
+import org.eclipse.lmos.operator.resolver.Wire
+import org.eclipse.lmos.operator.resources.AgentResource
 import org.semver4j.Semver
 
 object CapabilityResolver {

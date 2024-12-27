@@ -4,13 +4,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.resolver.impl
+package org.eclipse.lmos.operator.resolver.impl
 
-import ai.ancf.lmos.operator.resolver.ResolveContext
-import ai.ancf.lmos.operator.resolver.Wire
-import ai.ancf.lmos.operator.resources.AgentResource
-import ai.ancf.lmos.operator.resources.ProvidedCapability
-import ai.ancf.lmos.operator.resources.RequiredCapability
+import org.eclipse.lmos.operator.resolver.ResolveContext
+import org.eclipse.lmos.operator.resolver.Wire
+import org.eclipse.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resources.ProvidedCapability
+import org.eclipse.lmos.operator.resources.RequiredCapability
 import org.semver4j.Semver
 
 class AgentResolveContext(private val agentResources: List<AgentResource>) : ResolveContext<AgentResource> {

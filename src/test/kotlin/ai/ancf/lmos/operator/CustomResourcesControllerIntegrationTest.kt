@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator
+package org.eclipse.lmos.operator
 
-import ai.ancf.lmos.operator.resources.ChannelResource
-import ai.ancf.lmos.operator.resources.ChannelRoutingResource
-import ai.ancf.lmos.operator.server.routing.X_SUBSET_HEADER
 import io.fabric8.kubernetes.client.KubernetesClient
 import io.javaoperatorsdk.operator.springboot.starter.test.EnableMockOperator
 import org.assertj.core.api.Assertions
+import org.eclipse.lmos.operator.resources.ChannelResource
+import org.eclipse.lmos.operator.resources.ChannelRoutingResource
+import org.eclipse.lmos.operator.server.routing.X_SUBSET_HEADER
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
@@ -28,10 +28,10 @@ import java.io.FileInputStream
 @AutoConfigureWebTestClient
 @EnableMockOperator(
     crdPaths = [
-        "classpath:META-INF/fabric8/channels.lmos.ai-v1.yml",
-        "classpath:META-INF/fabric8/agents.lmos.ai-v1.yml",
-        "classpath:META-INF/fabric8/channelroutings.lmos.ai-v1.yml",
-        "classpath:META-INF/fabric8/channelrollouts.lmos.ai-v1.yml",
+        "classpath:META-INF/fabric8/channels.lmos.eclipse-v1.yml",
+        "classpath:META-INF/fabric8/agents.lmos.eclipse-v1.yml",
+        "classpath:META-INF/fabric8/channelroutings.lmos.eclipse-v1.yml",
+        "classpath:META-INF/fabric8/channelrollouts.lmos.eclipse-v1.yml",
     ],
 )
 class CustomResourcesControllerIntegrationTest {

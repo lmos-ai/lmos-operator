@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.resolver
+package org.eclipse.lmos.operator.resolver
 
-import ai.ancf.lmos.operator.resources.AgentResource
-import ai.ancf.lmos.operator.resources.RequiredCapability
+import org.eclipse.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resources.RequiredCapability
 
 interface Resolver<P> {
     @Throws(ResolverException::class)

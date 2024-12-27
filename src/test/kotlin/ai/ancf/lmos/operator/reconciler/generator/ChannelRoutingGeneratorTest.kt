@@ -4,18 +4,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.reconciler.generator
+package org.eclipse.lmos.operator.reconciler.generator
 
-import ai.ancf.lmos.operator.reconciler.generator.RoutingChannelGenerator.createChannelRoutingResource
-import ai.ancf.lmos.operator.resolver.Wire
-import ai.ancf.lmos.operator.resources.AgentResource
-import ai.ancf.lmos.operator.resources.AgentSpec
-import ai.ancf.lmos.operator.resources.CapabilityGroup
-import ai.ancf.lmos.operator.resources.ChannelResource
-import ai.ancf.lmos.operator.resources.ProvidedCapability
-import ai.ancf.lmos.operator.resources.RequiredCapability
 import io.fabric8.kubernetes.api.model.ObjectMeta
 import org.assertj.core.api.Assertions.assertThat
+import org.eclipse.lmos.operator.reconciler.generator.RoutingChannelGenerator.createChannelRoutingResource
+import org.eclipse.lmos.operator.resolver.Wire
+import org.eclipse.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resources.AgentSpec
+import org.eclipse.lmos.operator.resources.CapabilityGroup
+import org.eclipse.lmos.operator.resources.ChannelResource
+import org.eclipse.lmos.operator.resources.ProvidedCapability
+import org.eclipse.lmos.operator.resources.RequiredCapability
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 

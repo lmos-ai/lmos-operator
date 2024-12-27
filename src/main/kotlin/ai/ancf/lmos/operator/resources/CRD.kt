@@ -4,10 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.resources
+package org.eclipse.lmos.operator.resources
 
-import ai.ancf.lmos.operator.resolver.ResolveStrategy
-import ai.ancf.lmos.operator.resolver.Wire
 import com.fasterxml.jackson.annotation.JsonPropertyDescription
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import io.fabric8.crd.generator.annotation.PrinterColumn
@@ -20,8 +18,10 @@ import io.fabric8.kubernetes.model.annotation.Plural
 import io.fabric8.kubernetes.model.annotation.ShortNames
 import io.fabric8.kubernetes.model.annotation.Singular
 import io.fabric8.kubernetes.model.annotation.Version
+import org.eclipse.lmos.operator.resolver.ResolveStrategy
+import org.eclipse.lmos.operator.resolver.Wire
 
-@Group("lmos.ai")
+@Group("lmos.eclipse")
 @Version("v1")
 @Plural("agents")
 @Singular("agent")
@@ -50,7 +50,7 @@ data class ProvidedCapability(
     var description: String = "",
 ) : Capability()
 
-@Group("lmos.ai")
+@Group("lmos.eclipse")
 @Version("v1")
 @Plural("channels")
 @Singular("channel")
@@ -84,7 +84,7 @@ data class ChannelSpec(
     var requiredCapabilities: Set<RequiredCapability>,
 )
 
-@Group("lmos.ai")
+@Group("lmos.eclipse")
 @Version("v1")
 @Plural("channelrollouts")
 @Singular("channelrollout")
@@ -115,7 +115,7 @@ data class ChannelRolloutSpec(
     var strategy: Strategy,
 )
 
-@Group("lmos.ai")
+@Group("lmos.eclipse")
 @Version("v1")
 @Plural("channelroutings")
 @Singular("channelrouting")

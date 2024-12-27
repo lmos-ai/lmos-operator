@@ -4,12 +4,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.server.routing.impl
+package org.eclipse.lmos.operator.server.routing.impl
 
-import ai.ancf.lmos.operator.resources.ChannelResource
-import ai.ancf.lmos.operator.resources.ChannelRoutingResource
-import ai.ancf.lmos.operator.server.routing.CustomResourcesService
 import io.fabric8.kubernetes.client.KubernetesClient
+import org.eclipse.lmos.operator.resources.ChannelResource
+import org.eclipse.lmos.operator.resources.ChannelRoutingResource
+import org.eclipse.lmos.operator.server.routing.CustomResourcesService
 import org.springframework.stereotype.Component
 import java.util.function.Consumer
 

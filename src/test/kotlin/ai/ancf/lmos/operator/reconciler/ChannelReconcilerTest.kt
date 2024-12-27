@@ -4,18 +4,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.reconciler
+package org.eclipse.lmos.operator.reconciler
 
-import ai.ancf.lmos.operator.OperatorApplication
-import ai.ancf.lmos.operator.resources.AgentResource
-import ai.ancf.lmos.operator.resources.ChannelResource
-import ai.ancf.lmos.operator.resources.ChannelRoutingResource
-import ai.ancf.lmos.operator.resources.ResolveStatus
 import io.fabric8.kubernetes.client.KubernetesClient
 import io.fabric8.kubernetes.client.utils.Serialization
 import io.javaoperatorsdk.operator.springboot.starter.test.EnableMockOperator
 import org.assertj.core.api.Assertions.assertThat
 import org.awaitility.Awaitility
+import org.eclipse.lmos.operator.OperatorApplication
+import org.eclipse.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resources.ChannelResource
+import org.eclipse.lmos.operator.resources.ChannelRoutingResource
+import org.eclipse.lmos.operator.resources.ResolveStatus
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,10 +30,10 @@ import java.util.concurrent.TimeUnit
 )
 @EnableMockOperator(
     crdPaths = [
-        "classpath:META-INF/fabric8/channels.lmos.ai-v1.yml",
-        "classpath:META-INF/fabric8/agents.lmos.ai-v1.yml",
-        "classpath:META-INF/fabric8/channelroutings.lmos.ai-v1.yml",
-        "classpath:META-INF/fabric8/channelrollouts.lmos.ai-v1.yml",
+        "classpath:META-INF/fabric8/channels.lmos.eclipse-v1.yml",
+        "classpath:META-INF/fabric8/agents.lmos.eclipse-v1.yml",
+        "classpath:META-INF/fabric8/channelroutings.lmos.eclipse-v1.yml",
+        "classpath:META-INF/fabric8/channelrollouts.lmos.eclipse-v1.yml",
     ],
 )
 internal class ChannelReconcilerTest {
@@ -54,7 +54,7 @@ internal class ChannelReconcilerTest {
                 .apiextensions()
                 .v1()
                 .customResourceDefinitions()
-                .withName("agents.lmos.ai")
+                .withName("agents.lmos.eclipse")
                 .get(),
         )
             .isNotNull()
@@ -64,7 +64,7 @@ internal class ChannelReconcilerTest {
                 .apiextensions()
                 .v1()
                 .customResourceDefinitions()
-                .withName("channels.lmos.ai")
+                .withName("channels.lmos.eclipse")
                 .get(),
         )
             .isNotNull()

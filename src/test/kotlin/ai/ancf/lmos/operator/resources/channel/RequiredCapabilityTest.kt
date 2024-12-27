@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.resources.channel
+package org.eclipse.lmos.operator.resources.channel
 
-import ai.ancf.lmos.operator.data.TestDataGenerator
 import org.assertj.core.api.Assertions
+import org.eclipse.lmos.operator.data.TestDataGenerator
 import org.junit.jupiter.api.Test
 
 class RequiredCapabilityTest {

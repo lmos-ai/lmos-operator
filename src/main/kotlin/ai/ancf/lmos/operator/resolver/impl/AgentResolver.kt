@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.resolver.impl
+package org.eclipse.lmos.operator.resolver.impl
 
-import ai.ancf.lmos.operator.resolver.ResolveContext
-import ai.ancf.lmos.operator.resolver.Resolver
-import ai.ancf.lmos.operator.resolver.ResolverException
-import ai.ancf.lmos.operator.resolver.Wire
-import ai.ancf.lmos.operator.resources.AgentResource
-import ai.ancf.lmos.operator.resources.RequiredCapability
+import org.eclipse.lmos.operator.resolver.ResolveContext
+import org.eclipse.lmos.operator.resolver.Resolver
+import org.eclipse.lmos.operator.resolver.ResolverException
+import org.eclipse.lmos.operator.resolver.Wire
+import org.eclipse.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resources.RequiredCapability
 import java.util.function.Consumer
 
 class AgentResolver : Resolver<AgentResource> {

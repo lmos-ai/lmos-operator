@@ -1,7 +1,7 @@
 # lmos-operator
 
-![Build Status](https://github.com/lmos-ai/lmos-operator/actions/workflows/gradle-publish.yml/badge.svg)
-[![Gradle Package](https://github.com/lmos-ai/lmos-operator/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/lmos-ai/lmos-operator/actions/workflows/gradle-publish.yml)
+![Build Status](https://github.com/eclipse-lmos/lmos-operator/actions/workflows/gradle-publish.yml/badge.svg)
+[![Gradle Package](https://github.com/eclipse-lmos/lmos-operator/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/eclipse-lmos/lmos-operator/actions/workflows/gradle-publish.yml)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
@@ -47,7 +47,7 @@ The following diagram illustrates how the lmos-operator dynamically manages and 
 #### Agent Resource
 
 ```yaml
-apiVersion: lmos.ai/v1
+apiVersion: lmos.eclipse/v1
 kind: Agent
 metadata:
 name: acme-billing-agent
@@ -70,7 +70,7 @@ providedCapabilities:
 #### Channel Resource
 
 ```yaml
-apiVersion: lmos.ai/v1
+apiVersion: lmos.eclipse/v1
 kind: Channel
 metadata:
   name: acme-web-stable
@@ -93,7 +93,7 @@ spec:
 #### Generated ChannelRouting 
 
 ```yaml
-apiVersion: "lmos.ai/v1"
+apiVersion: "lmos.eclipse/v1"
 kind: "ChannelRouting"
 metadata:
   name: "acme-web-stable"
@@ -146,7 +146,7 @@ export CR_PAT=YOUR_TOKEN
 echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 ```
 ```
-helm install lmos-operator oci://ghcr.io/lmos-ai/lmos-operator-chart --version <current_version> --set imageCredentials.username=<github_user> --set imageCredentials.password=<github_pat>
+helm install lmos-operator oci://ghcr.io/eclipse-lmos/lmos-operator-chart --version <current_version> --set imageCredentials.username=<github_user> --set imageCredentials.password=<github_pat>
 ```
 
 Check that CRDs are created:
@@ -158,9 +158,9 @@ kubectl get crds
 Expected output:
 ```
 NAME                      CREATED AT
-agents.lmos.ai            2024-07-31T13:08:34Z
-channelrollouts.lmos.ai   2024-07-31T13:08:32Z
-channelroutings.lmos.ai   2024-07-31T13:08:36Z
+agents.lmos.eclipse            2024-07-31T13:08:34Z
+channelrollouts.lmos.eclipse   2024-07-31T13:08:32Z
+channelroutings.lmos.eclipse   2024-07-31T13:08:36Z
 ```
 
 ## How to test locally with Minikube:
@@ -174,7 +174,7 @@ minikube start
 Clone and start the operator:
 
 ```
-git clone https://github.com/lmos-ai/lmos-operator
+git clone https://github.com/eclipse-lmos/lmos-operator
 cd lmos-operator
 ./gradlew bootRun
 ```

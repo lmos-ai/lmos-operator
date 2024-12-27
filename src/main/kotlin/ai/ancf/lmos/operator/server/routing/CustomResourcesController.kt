@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.server.routing
+package org.eclipse.lmos.operator.server.routing
 
-import ai.ancf.lmos.operator.resources.ChannelResource
-import ai.ancf.lmos.operator.resources.ChannelRoutingResource
+import org.eclipse.lmos.operator.resources.ChannelResource
+import org.eclipse.lmos.operator.resources.ChannelRoutingResource
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping

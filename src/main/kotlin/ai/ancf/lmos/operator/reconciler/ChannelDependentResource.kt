@@ -4,23 +4,23 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.reconciler
+package org.eclipse.lmos.operator.reconciler
 
-import ai.ancf.lmos.operator.reconciler.filter.AgentResourcesFilter
-import ai.ancf.lmos.operator.reconciler.generator.RoutingChannelGenerator
-import ai.ancf.lmos.operator.resolver.ResolverException
-import ai.ancf.lmos.operator.resolver.impl.AgentResolveContext
-import ai.ancf.lmos.operator.resolver.impl.AgentResolver
-import ai.ancf.lmos.operator.resources.AgentResource
-import ai.ancf.lmos.operator.resources.ChannelResource
-import ai.ancf.lmos.operator.resources.ChannelRoutingResource
-import ai.ancf.lmos.operator.resources.ChannelStatus
-import ai.ancf.lmos.operator.resources.Labels
-import ai.ancf.lmos.operator.resources.ResolveStatus
 import io.javaoperatorsdk.operator.api.reconciler.Context
 import io.javaoperatorsdk.operator.processing.dependent.kubernetes.BooleanWithUndefined
 import io.javaoperatorsdk.operator.processing.dependent.kubernetes.CRUDKubernetesDependentResource
 import io.javaoperatorsdk.operator.processing.dependent.kubernetes.KubernetesDependent
+import org.eclipse.lmos.operator.reconciler.filter.AgentResourcesFilter
+import org.eclipse.lmos.operator.reconciler.generator.RoutingChannelGenerator
+import org.eclipse.lmos.operator.resolver.ResolverException
+import org.eclipse.lmos.operator.resolver.impl.AgentResolveContext
+import org.eclipse.lmos.operator.resolver.impl.AgentResolver
+import org.eclipse.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resources.ChannelResource
+import org.eclipse.lmos.operator.resources.ChannelRoutingResource
+import org.eclipse.lmos.operator.resources.ChannelStatus
+import org.eclipse.lmos.operator.resources.Labels
+import org.eclipse.lmos.operator.resources.ResolveStatus
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

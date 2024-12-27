@@ -4,12 +4,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.resolver
+package org.eclipse.lmos.operator.resolver
 
-import ai.ancf.lmos.operator.data.TestDataGenerator
-import ai.ancf.lmos.operator.resolver.impl.AgentResolveContext
-import ai.ancf.lmos.operator.resources.RequiredCapability
 import org.assertj.core.api.Assertions
+import org.eclipse.lmos.operator.data.TestDataGenerator
+import org.eclipse.lmos.operator.resolver.impl.AgentResolveContext
+import org.eclipse.lmos.operator.resources.RequiredCapability
 import org.junit.jupiter.api.Test
 
 class AgentResolveContextTest {

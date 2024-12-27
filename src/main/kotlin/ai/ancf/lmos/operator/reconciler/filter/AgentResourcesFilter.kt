@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.reconciler.filter
+package org.eclipse.lmos.operator.reconciler.filter
 
-import ai.ancf.lmos.operator.resources.AgentResource
-import ai.ancf.lmos.operator.resources.ChannelResource
+import org.eclipse.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resources.ChannelResource
 import java.util.function.Predicate
 
 class AgentResourcesFilter(channelResource: ChannelResource) : Predicate<AgentResource> {

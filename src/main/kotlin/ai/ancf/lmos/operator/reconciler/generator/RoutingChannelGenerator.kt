@@ -4,17 +4,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package ai.ancf.lmos.operator.reconciler.generator
+package org.eclipse.lmos.operator.reconciler.generator
 
-import ai.ancf.lmos.operator.resolver.Wire
-import ai.ancf.lmos.operator.resources.AgentResource
-import ai.ancf.lmos.operator.resources.CapabilityGroup
-import ai.ancf.lmos.operator.resources.ChannelResource
-import ai.ancf.lmos.operator.resources.ChannelRoutingCapability
-import ai.ancf.lmos.operator.resources.ChannelRoutingResource
-import ai.ancf.lmos.operator.resources.ChannelRoutingSpec
-import ai.ancf.lmos.operator.resources.Labels
 import io.fabric8.kubernetes.api.model.ObjectMeta
+import org.eclipse.lmos.operator.resolver.Wire
+import org.eclipse.lmos.operator.resources.AgentResource
+import org.eclipse.lmos.operator.resources.CapabilityGroup
+import org.eclipse.lmos.operator.resources.ChannelResource
+import org.eclipse.lmos.operator.resources.ChannelRoutingCapability
+import org.eclipse.lmos.operator.resources.ChannelRoutingResource
+import org.eclipse.lmos.operator.resources.ChannelRoutingSpec
+import org.eclipse.lmos.operator.resources.Labels
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
