@@ -87,7 +87,7 @@ class ChannelRoutingGeneratorTest {
         val channelResource = ChannelResource()
         channelResource.metadata = metadata
 
-        val channelRoutingResource = createChannelRoutingResource(channelResource, wiredCapabilities)
+        val channelRoutingResource = createChannelRoutingResource(channelResource, wiredCapabilities, "testSubset")
 
         assertThat(channelRoutingResource).isNotNull()
         assertThat(channelRoutingResource.metadata).isNotNull()
