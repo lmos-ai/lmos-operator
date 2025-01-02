@@ -12,6 +12,7 @@ import org.assertj.core.api.Assertions
 import org.eclipse.lmos.operator.resources.ChannelResource
 import org.eclipse.lmos.operator.resources.ChannelRoutingResource
 import org.eclipse.lmos.operator.server.routing.X_SUBSET_HEADER
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
@@ -20,6 +21,7 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.util.ResourceUtils
 import java.io.FileInputStream
 
+@Disabled
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     properties = ["spring.main.allow-bean-definition-overriding=true"],

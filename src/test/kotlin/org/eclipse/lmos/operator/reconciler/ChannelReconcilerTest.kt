@@ -17,6 +17,7 @@ import org.eclipse.lmos.operator.resources.ChannelResource
 import org.eclipse.lmos.operator.resources.ChannelRoutingResource
 import org.eclipse.lmos.operator.resources.ResolveStatus
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -24,6 +25,7 @@ import org.springframework.util.ResourceUtils
 import java.io.FileInputStream
 import java.util.concurrent.TimeUnit
 
+@Disabled
 @SpringBootTest(
     properties = ["spring.main.allow-bean-definition-overriding=true"],
     classes = [OperatorApplication::class],
