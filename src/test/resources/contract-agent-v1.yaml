@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-apiVersion: lmos.ai/v1
+apiVersion: lmos.eclipse/v1
 kind: Agent
 metadata:
   name: contract-agent

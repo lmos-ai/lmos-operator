@@ -23,7 +23,7 @@ plugins {
     kotlin("kapt") version "2.0.21"
 }
 
-group = "ai.ancf.lmos"
+group = "org.eclipse.lmos"
 
 java {
     toolchain {
@@ -114,12 +114,12 @@ mavenPublishing {
             """The LMOS Operator is a Kubernetes operator designed to dynamically resolve Channel requirements based on 
                 the capabilities of installed Agents within a Kubernetes cluster (environment).
             """.trimMargin()
-        url = "https://github.com/lmos-ai/lmos-operator"
+        url = "https://github.com/eclipse-lmos/lmos-operator"
         licenses {
             license {
                 name = "Apache-2.0"
                 distribution = "repo"
-                url = "https://github.com/lmos-ai/lmos-operator/blob/main/LICENSES/Apache-2.0.txt"
+                url = "https://github.com/eclipse-lmos/lmos-operator/blob/main/LICENSES/Apache-2.0.txt"
             }
         }
         developers {
@@ -130,7 +130,7 @@ mavenPublishing {
             }
         }
         scm {
-            url = "https://github.com/lmos-ai/lmos-operator.git"
+            url = "https://github.com/eclipse-lmos/lmos-operator.git"
         }
     }
 
@@ -149,7 +149,7 @@ mavenPublishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = URI("https://maven.pkg.github.com/lmos-ai/lmos-operator")
+            url = URI("https://maven.pkg.github.com/eclipse-lmos/lmos-operator")
             credentials {
                 username = findProperty("GITHUB_USER")?.toString() ?: getenv("GITHUB_USER")
                 password = findProperty("GITHUB_TOKEN")?.toString() ?: getenv("GITHUB_TOKEN")

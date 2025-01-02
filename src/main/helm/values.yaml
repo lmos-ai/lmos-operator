@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/lmos-ai/lmos-operator
+  repository: ghcr.io/eclipse-lmos/lmos-operator
   pullPolicy: IfNotPresent
 
 nameOverride: "lmos-operator"
@@ -124,7 +124,7 @@ tolerations: [ ]
 
 affinity: { }
 
-customApiGroup: lmos.ai
+customApiGroup: lmos.eclipse
 customResources:
   - agents
   - channels
