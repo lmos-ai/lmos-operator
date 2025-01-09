@@ -7,12 +7,12 @@
 package org.eclipse.lmos.operator
 
 import io.fabric8.kubernetes.client.KubernetesClient
-import io.javaoperatorsdk.operator.springboot.starter.test.EnableMockOperator
+import io.fabric8.kubernetes.client.server.mock.EnableKubernetesMockClient
 import org.assertj.core.api.Assertions
 import org.eclipse.lmos.operator.resources.ChannelResource
 import org.eclipse.lmos.operator.resources.ChannelRoutingResource
+import org.eclipse.lmos.operator.server.routing.X_NAMESPACE_HEADER
 import org.eclipse.lmos.operator.server.routing.X_SUBSET_HEADER
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
@@ -21,11 +21,9 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.util.ResourceUtils
 import java.io.FileInputStream
 
-@Disabled
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    properties = ["spring.main.allow-bean-definition-overriding=true"],
-    classes = [OperatorApplication::class],
+    classes = [OperatorApplication::class]
 )
 @AutoConfigureWebTestClient
 @EnableMockOperator(
@@ -37,6 +35,7 @@ import java.io.FileInputStream
     ],
 )
 class CustomResourcesControllerIntegrationTest {
+
     @Autowired
     private lateinit var webTestClient: WebTestClient
 
@@ -55,6 +54,7 @@ class CustomResourcesControllerIntegrationTest {
                 .get()
                 .uri("/apis/v1/tenants/acme/channels")
                 .header(X_SUBSET_HEADER, "stable")
+                .header(X_NAMESPACE_HEADER, "test")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(ChannelResource::class.java).returnResult()
@@ -76,6 +76,7 @@ class CustomResourcesControllerIntegrationTest {
                 .get()
                 .uri("/apis/v1/tenants/acme/channels/web")
                 .header(X_SUBSET_HEADER, "stable")
+                .header(X_NAMESPACE_HEADER, "test")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(ChannelResource::class.java).returnResult()
@@ -98,6 +99,7 @@ class CustomResourcesControllerIntegrationTest {
                 .get()
                 .uri("/apis/v1/tenants/acme/channels/web/routing")
                 .header(X_SUBSET_HEADER, "stable")
+                .header(X_NAMESPACE_HEADER, "test")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(ChannelRoutingResource::class.java).returnResult()
@@ -119,6 +121,7 @@ class CustomResourcesControllerIntegrationTest {
             .get()
             .uri("/apis/v1/tenants/de/channels/unknown/routing")
             .header(X_SUBSET_HEADER, "stable")
+            .header(X_NAMESPACE_HEADER, "test")
             .exchange()
             .expectStatus().isNotFound()
     }

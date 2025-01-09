@@ -29,7 +29,7 @@ class AgentResolverTest {
             )
 
         // Then
-        assertThat(resolverException).hasMessageContaining("Resolve context is empty")
+        assertThat(resolverException).hasMessageContaining("Required capabilities not resolved")
         assertThat(resolverException.getUnresolvedRequiredCapabilities()).hasSize(1)
     }
 

@@ -29,7 +29,8 @@ class DefaultCustomResourcesService(private val client: KubernetesClient) : Cust
             )
 
         val channelRoutingResources =
-            client.resources(
+            client
+                .resources(
                 ChannelRoutingResource::class.java,
             ).inNamespace(namespace).withLabels(labelSelectors).list()
 

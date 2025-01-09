@@ -6,6 +6,7 @@
 
 package org.eclipse.lmos.operator.resources
 
+import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonPropertyDescription
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import io.fabric8.crd.generator.annotation.PrinterColumn
@@ -44,9 +45,9 @@ sealed class Capability {
 data class ProvidedCapability(
     @JsonPropertyDescription("The name of the capability")
     @Required
-    override var name: String,
+    override var name: String = "",
     @Required
-    override var version: String,
+    override var version: String = "",
     var description: String = "",
 ) : Capability()
 
@@ -56,7 +57,7 @@ data class ProvidedCapability(
 @Singular("channel")
 @Kind("Channel")
 @ShortNames("ch")
-class ChannelResource : CustomResource<ChannelSpec, ChannelStatus>(), Namespaced
+class ChannelResource @JsonCreator constructor() : CustomResource<ChannelSpec, ChannelStatus>(), Namespaced
 
 enum class ResolveStatus {
     RESOLVED,

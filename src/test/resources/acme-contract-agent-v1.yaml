@@ -8,8 +8,13 @@ apiVersion: lmos.eclipse/v1
 kind: Agent
 metadata:
   name: contract-agent
+  labels:
+    subset: "stable"
+    version: "1.0.0"
 spec:
   description: This is the contract agent description
+  supportedTenants:
+    - acme
   supportedChannels:
     - web
     - ivr
