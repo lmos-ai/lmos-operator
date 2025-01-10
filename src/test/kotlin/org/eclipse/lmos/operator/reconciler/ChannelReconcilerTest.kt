@@ -8,16 +8,15 @@ package org.eclipse.lmos.operator.reconciler
 
 import io.fabric8.kubernetes.client.KubernetesClient
 import io.fabric8.kubernetes.client.utils.Serialization
-import io.javaoperatorsdk.operator.springboot.starter.test.EnableMockOperator
 import org.assertj.core.api.Assertions.assertThat
 import org.awaitility.Awaitility
+import org.eclipse.lmos.operator.EnableMockOperator
 import org.eclipse.lmos.operator.OperatorApplication
 import org.eclipse.lmos.operator.resources.AgentResource
 import org.eclipse.lmos.operator.resources.ChannelResource
 import org.eclipse.lmos.operator.resources.ChannelRoutingResource
 import org.eclipse.lmos.operator.resources.ResolveStatus
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -25,9 +24,8 @@ import org.springframework.util.ResourceUtils
 import java.io.FileInputStream
 import java.util.concurrent.TimeUnit
 
-@Disabled
+
 @SpringBootTest(
-    properties = ["spring.main.allow-bean-definition-overriding=true"],
     classes = [OperatorApplication::class],
 )
 @EnableMockOperator(
@@ -39,6 +37,7 @@ import java.util.concurrent.TimeUnit
     ],
 )
 internal class ChannelReconcilerTest {
+
     @Autowired
     lateinit var client: KubernetesClient
 
@@ -77,7 +76,7 @@ internal class ChannelReconcilerTest {
         // When I create two Agents
 
         client.load(getResource("acme-billing-agent-v1.yaml")).createOrReplace()
-        client.load(getResource("contract-agent-v1.yaml")).createOrReplace()
+        client.load(getResource("acme-contract-agent-v1.yaml")).createOrReplace()
 
         // When I create a Channel the Reconciler should start
         client.load(getResource("acme-ivr-channel-v1.yaml")).createOrReplace()

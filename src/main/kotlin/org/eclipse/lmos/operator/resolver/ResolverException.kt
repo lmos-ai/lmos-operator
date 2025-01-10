@@ -21,29 +21,14 @@ class ResolverException : Exception {
     private val unresolvedRequiredCapabilities: Set<RequiredCapability>
 
     /**
-     * Create a `ResolutionException` with the specified message, cause
-     * and unresolved requirements.
+     * Create a `ResolutionException` with the specified unresolved required capabilities.
      *
-     * @param message The message.
-     * @param cause The cause of this exception.
-     * @param unresolvedRequiredCapabilities The unresolved required capabilities from
-     * mandatory resources or `null` if no unresolved requirements
-     * information is provided.
+     * @param unresolvedRequiredCapabilities The unresolved required capabilities.
      */
-    constructor(message: String, cause: Throwable, unresolvedRequiredCapabilities: Set<RequiredCapability>) : super(
-        message,
-        cause,
+    constructor(unresolvedRequiredCapabilities: Set<RequiredCapability>) : super(
+        "Required capabilities not resolved: ${unresolvedRequiredCapabilities.joinToString(", ") { it.toString() }}"
     ) {
         this.unresolvedRequiredCapabilities = Collections.unmodifiableSet(unresolvedRequiredCapabilities)
-    }
-
-    /**
-     * Create a `ResolutionException` with the specified message.
-     *
-     * @param message The message.
-     */
-    constructor(message: String?, unresolvedRequiredCapabilities: Set<RequiredCapability>) : super(message) {
-        this.unresolvedRequiredCapabilities = unresolvedRequiredCapabilities
     }
 
     /**
@@ -53,6 +38,20 @@ class ResolverException : Exception {
      */
     constructor(cause: Throwable?) : super(cause) {
         this.unresolvedRequiredCapabilities = emptySet()
+    }
+
+    /**
+     * Create a `ResolutionException` with the specified message, cause, and unresolved required capabilities.
+     *
+     * @param message The message.
+     * @param cause The cause of this exception.
+     * @param unresolvedRequiredCapabilities The unresolved required capabilities.
+     */
+    constructor(message: String, cause: Throwable, unresolvedRequiredCapabilities: Set<RequiredCapability>) : super(
+        message,
+        cause
+    ) {
+        this.unresolvedRequiredCapabilities = Collections.unmodifiableSet(unresolvedRequiredCapabilities)
     }
 
     /**

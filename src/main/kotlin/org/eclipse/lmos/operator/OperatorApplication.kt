@@ -6,11 +6,13 @@
 
 package org.eclipse.lmos.operator
 
+import org.springframework.context.annotation.Import
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-open class OperatorApplication
+@Import(OperatorConfig::class)
+class OperatorApplication
 
 fun main(args: Array<String>) {
     runApplication<OperatorApplication>(*args)

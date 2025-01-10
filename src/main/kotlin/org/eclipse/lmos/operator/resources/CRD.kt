@@ -56,7 +56,7 @@ data class ProvidedCapability(
 @Singular("channel")
 @Kind("Channel")
 @ShortNames("ch")
-class ChannelResource : CustomResource<ChannelSpec, ChannelStatus>(), Namespaced
+class ChannelResource() : CustomResource<ChannelSpec, ChannelStatus>(), Namespaced
 
 enum class ResolveStatus {
     RESOLVED,

@@ -11,7 +11,8 @@ import java.net.URI
 plugins {
     java
     id("org.springframework.boot") version "3.4.0"
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
+    id("org.jetbrains.kotlin.plugin.spring") version "2.1.0"
+    //id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
     id("io.spring.dependency-management") version "1.1.6"
     id("org.cadixdev.licenser") version "0.6.1"
 
@@ -30,6 +31,10 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
+
+//ktlint {
+//    version.set("1.4.1")
+//}
 
 license {
     include("**/*.java")
@@ -148,7 +153,11 @@ tasks.register("helmPush") {
         }
 
         helm.execHelm("push") {
-            args(tasks.named("helmPackageMainChart").get().outputs.files.singleFile.toString())
+            args(
+                tasks
+                .named("helmPackageMainChart")
+                .get().outputs.files.singleFile.toString()
+            )
             args("oci://$registryUrl/$registryNamespace")
         }
 
@@ -171,8 +180,6 @@ dependencies {
 
     implementation("io.javaoperatorsdk:operator-framework-spring-boot-starter:5.6.0")
     implementation("io.fabric8:generator-annotations:6.13.4")
-
-    implementation("org.apache.felix:org.apache.felix.resolver:2.0.4")
 
     implementation("net.logstash.logback:logstash-logback-encoder:7.4")
     implementation("io.sentry:sentry-logback:7.11.0")
