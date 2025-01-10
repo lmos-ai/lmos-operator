@@ -50,21 +50,24 @@ The following diagram illustrates how the lmos-operator dynamically manages and 
 apiVersion: lmos.eclipse/v1
 kind: Agent
 metadata:
-name: acme-billing-agent
+  name: acme-billing-agent
+  labels:
+    subset: "stable"
+    version: "1.0.0"
 spec:
-description: This is the billing agent description
-supportedTenants:
-  - acme
-supportedChannels:
-  - web
-  - ivr
-providedCapabilities:
-  - name: view-bill
-    version: 1.0.0
-    description: Capability to view a bill
-  - name: download-bill
-    version: 1.1.0
-    description: Capability to download a bill
+  description: This is the billing agent description
+  supportedTenants:
+    - acme
+  supportedChannels:
+    - web
+    - ivr
+  providedCapabilities:
+    - name: view-bill
+      version: 1.0.0
+      description: Capability to view a bill
+    - name: download-bill
+      version: 1.1.0
+      description: Capability to download a bill
 ```
 
 #### Channel Resource
