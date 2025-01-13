@@ -9,7 +9,6 @@ kind: Agent
 metadata:
   name: contract-agent
   labels:
-    subset: "stable"
     version: "1.0.0"
 spec:
   description: This is the contract agent description

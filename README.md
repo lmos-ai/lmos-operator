@@ -52,7 +52,6 @@ kind: Agent
 metadata:
   name: acme-billing-agent
   labels:
-    subset: "stable"
     version: "1.0.0"
 spec:
   description: This is the billing agent description

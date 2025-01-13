@@ -40,10 +40,8 @@ class ChannelDependentResource :
         val client = context.client
 
         // Retrieve all agents from the same namespace of the channel resource
-        val subset = channelResource.metadata.labels[Labels.SUBSET] ?: "stable"
         val agentResources =
-            client.resources(AgentResource::class.java).inNamespace(namespace)
-                .withLabel(Labels.SUBSET, subset).list().items
+            client.resources(AgentResource::class.java).inNamespace(namespace).list().items
 
         // Filter agents which support the tenant and channel of the channel resource
         val filteredAgentResources =
@@ -58,14 +56,14 @@ class ChannelDependentResource :
             // Resolve required capabilities and wire them to the agents
             val wiredCapabilities = resolver.resolve(requiredCapabilities, resolveContext)
             val channelRoutingResource =
-                RoutingChannelGenerator.createChannelRoutingResource(channelResource, wiredCapabilities, subset)
+                RoutingChannelGenerator.createChannelRoutingResource(channelResource, wiredCapabilities)
             channelResource.status = ChannelStatus(ResolveStatus.RESOLVED)
             log.info("Created ChannelRouting for channel ${channelResource.metadata.name} in namespace $namespace")
             return channelRoutingResource
         } catch (e: ResolverException) {
             // ChannelRoutingResource must be created because this method is not allowed to return null or throw an exception :(
             val channelRoutingResource =
-                RoutingChannelGenerator.createChannelRoutingResource(channelResource, emptySet(), subset)
+                RoutingChannelGenerator.createChannelRoutingResource(channelResource, emptySet())
             log.error("Resolve failed for channel ${channelResource.metadata.name} in namespace $namespace", e)
             channelResource.status = ChannelStatus(ResolveStatus.UNRESOLVED, e.getUnresolvedRequiredCapabilities())
             return channelRoutingResource
