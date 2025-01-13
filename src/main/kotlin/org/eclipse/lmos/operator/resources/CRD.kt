@@ -150,16 +150,14 @@ data class ChannelRoutingCapability(
     var providedVersion: String,
     @Required
     var host: String,
-    var subset: String? = null,
     var description: String = "",
 ) {
-    constructor(wire: Wire<AgentResource>, subset: String?) : this(
+    constructor(wire: Wire<AgentResource>) : this(
         name = wire.providedCapability.name,
         requiredVersion = wire.requiredCapability.version,
         providedVersion = wire.providedCapability.version,
         description = wire.providedCapability.description,
         host = "${wire.provider.metadata.name}.${wire.provider.metadata.namespace}.svc.cluster.local",
-        subset = subset,
     )
 }
 
